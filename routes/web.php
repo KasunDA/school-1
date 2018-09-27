@@ -19,3 +19,6 @@ Route::domain('{account}.school.test')->group(function () {
         return $account . ' ' . $id;
     });
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
