@@ -11,7 +11,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>نام</th>
                         <th>Email</th>
                         <th>Created at</th>
                         <th>Last update</th>

@@ -643,6 +643,6 @@
 <!-- core -->
 
   <!-- ajax -->
-    <script src="/assets/admin/js/app.js"></script>
+  <script src="{{ mix("assets/admin/js/app.js") }}"></script>
 </body>
 </html>
