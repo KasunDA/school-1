@@ -1,5 +1,5 @@
 /*custom*/
-@import url(../../assets/fonts/roboto/font.css);
+@import url(../fonts/IRANSans/font.css);
 body{
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: IRANSans, Tahoma, Arial, sans-serif;
 }
