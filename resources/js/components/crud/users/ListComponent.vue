@@ -1,27 +1,29 @@
 <template>
     <card-component title="لیست کاربران">
         <div class="box-tool">
-            <router-link :to="{ name:'admin.dashboard' }" type="button" class="btn btn-primary pull-right">بازگشت</router-link>
-            <router-link :to="{ name:'admin.users.create' }" type="button" class="btn btn-success">ایجاد</router-link>
+            <div class="btn-group pull-right">
+                <router-link type="button" :to="{ name:'admin.dashboard' }" class="btn btn-sm primary pull-right">بازگشت</router-link>
+                <router-link type="button" :to="{ name:'admin.users.create' }" class="btn btn-sm success">ایجاد</router-link>
+            </div>
         </div>
         <!-- /.panel-heading -->
         <div class="box-body">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover">
+                <table class="table table-striped b-t">
                     <thead>
                     <tr>
                         <th>#</th>
                         <th>نام</th>
-                        <th>Email</th>
-                        <th>Created at</th>
-                        <th>Last update</th>
-                        <th>Actions</th>
+                        <th>ایمیل</th>
+                        <th>تاریخ ایجاد</th>
+                        <th>تاریخ بروزرسانی</th>
+                        <th>عملیات</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-if="users === null">
                         <td colspan="6">
-                            <h2>Loading...</h2>
+                            <h2>درحال خواندن اطلاعات...</h2>
                         </td>
                     </tr>
                     <tr v-else-if="users.data.length > 0" v-for="user in users.data">
@@ -31,14 +33,16 @@
                         <td>{{ user.created_at }}</td>
                         <td>{{ user.last_update }}</td>
                         <td>
-                            <router-link type="button" class="btn m-a-xs btn-xs btn-primary" :to="{name:'admin.users.show', params:{user_id:user.id}}"><i class="glyphicon glyphicon-eye"></i></router-link>
-                            <router-link type="button" class="btn m-a-xs btn-xs btn-warning" :to="{name:'admin.users.edit', params:{user_id:user.id}}"><i class="glyphicon glyphicon-edit"></i></router-link>
-                            <button type="button" class="btn m-a-xs btn-xs btn-danger" @click.prevent="deleteUser(user)"><i class="fa fa-trash"></i></button>
+                            <div class="btn-group pull-right">
+                                <router-link type="button" class="btn btn-sm info" :to="{name:'admin.users.show', params:{user_id:user.id}}"><i class="fa fa-eye"></i></router-link>
+                                <router-link type="button" class="btn btn-sm warning" :to="{name:'admin.users.edit', params:{user_id:user.id}}"><i class="fa fa-pencil"></i></router-link>
+                                <button type="button" class="btn btn-sm danger" @click.prevent="deleteUser(user)"><i class="fa fa-trash"></i></button>
+                            </div>
                         </td>
                     </tr>
                     <tr v-else>
                         <td colspan="6">
-                            <h3>No Users Exists</h3>
+                            <h3>هیچ کاربری در سیستم موجود نیست</h3>
                         </td>
                     </tr>
                     </tbody>
