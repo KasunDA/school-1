@@ -10,11 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::domain('school.test')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 Route::domain('{account}.school.test')->group(function () {
+    Route::get('/', function ($account) {
+        return view('schools/welcome', ['account' => $account]);
+    });
     Route::get('user/{id}', function ($account, $id) {
         return $account . ' ' . $id;
     });
