@@ -68,7 +68,7 @@
             loadUsers() {
                 var self = this;
                 this.users = null;
-                axios.get("/admin/users?page="+(this.$route.query.page ? this.$route.query.page : 1))
+                axios.get("/api/users?page="+(this.$route.query.page ? this.$route.query.page : 1))
                 .then(function(res){
                     self.users = res.data;
                 })
@@ -80,7 +80,7 @@
             deleteUser(user) {
                 if(confirm("Are you sure you want delete user '"+user.name+"'?")) {
                     var self = this;
-                    axios.delete("/admin/users/"+user.id).then(function(res){
+                    axios.delete("/api/users/"+user.id).then(function(res){
                         alert("The user deleted successfully!");
                     })
                     .catch(function(error) {
