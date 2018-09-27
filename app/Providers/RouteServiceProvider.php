@@ -40,6 +40,41 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         //
+        Route::middleware(['web', 'auth'])
+            ->prefix('admin')
+            ->name('admin.')
+            ->namespace($this->namespace.'\\Admin')
+            ->group(base_path('routes/admin.php'));
+        //
+        Route::middleware(['web', 'auth'])
+            ->prefix('main')
+            ->name('main.')
+            ->namespace($this->namespace.'\\Main')
+            ->group(base_path('routes/main.php'));
+        //
+        Route::middleware(['web', 'auth'])
+            ->prefix('employee')
+            ->name('employee.')
+            ->namespace($this->namespace.'\\Employee')
+            ->group(base_path('routes/employee.php'));
+        //
+        Route::middleware(['web', 'auth'])
+            ->prefix('teacher')
+            ->name('teacher.')
+            ->namespace($this->namespace.'\\Teacher')
+            ->group(base_path('routes/teacher.php'));
+        //
+        Route::middleware(['web', 'auth'])
+            ->prefix('student')
+            ->name('student.')
+            ->namespace($this->namespace.'\\Student')
+            ->group(base_path('routes/student.php'));
+        //
+        Route::middleware(['web', 'auth'])
+            ->prefix('family')
+            ->name('family.')
+            ->namespace($this->namespace.'\\Family')
+            ->group(base_path('routes/family.php'));
     }
 
     /**
