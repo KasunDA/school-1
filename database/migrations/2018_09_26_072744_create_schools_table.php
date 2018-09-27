@@ -23,7 +23,7 @@ class CreateSchoolsTable extends Migration
             $table->string('icon')->default('sub_icon.ico');
             $table->string('logo')->default('sub_logo.png');
             $table->string('banner')->default('sub_banner.jpg');
-            $table->timestamps('expaire_date');
+            $table->date('expaire_date');
             $table->boolean('visible');
             $table->timestamps();
             $table->softDeletes();

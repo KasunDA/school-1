@@ -15,7 +15,7 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('code');
+            $table->unsignedBigInteger('school_id');
             $table->unsignedBigInteger('term_id');
             $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('lesson_id');
@@ -23,7 +23,7 @@ class CreateCoursesTable extends Migration
             $table->text('detail')->nullable();
             $table->string('days_times')->nullable();
             $table->string('exam_place')->nullable();
-            $table->timestamps('exam_date')->nullable();
+            $table->date('exam_date')->nullable();
             $table->timestamps();
             $table->foreign('school_id')->references('id')->on('schools');
             $table->foreign('term_id')->references('id')->on('terms');

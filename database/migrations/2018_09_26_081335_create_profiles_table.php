@@ -20,7 +20,7 @@ class CreateProfilesTable extends Migration
             $table->string('fathers_name')->nullable();
             $table->string('meli', 10);
             $table->string('place', 100)->nullable();
-            $table->timestamps('birthdate')->nullable();
+            $table->date('birthdate')->nullable();
             $table->string('address')->nullable();
             $table->string('zipcode', 10)->nullable();
             $table->string('tel', 11)->nullable();
