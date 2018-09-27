@@ -1,10 +1,14 @@
 <template>
-    <card-component title="Users List">
-        <router-link :to="{ name:'admin.users.create' }" type="button" class="btn btn-success">Create</router-link>
-        <br><br>
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
+    <card-component title="لیست کاربران">
+        <div class="box-tool">
+            <router-link :to="{ name:'admin.dashboard' }" type="button" class="btn btn-primary pull-right">بازگشت</router-link>
+            <router-link :to="{ name:'admin.users.create' }" type="button" class="btn btn-success">ایجاد</router-link>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
@@ -13,8 +17,8 @@
                         <th>Last update</th>
                         <th>Actions</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr v-if="users === null">
                         <td colspan="6">
                             <h2>Loading...</h2>
@@ -27,9 +31,9 @@
                         <td>{{ user.created_at }}</td>
                         <td>{{ user.last_update }}</td>
                         <td>
-                            <router-link type="button" class="btn btn-success btn-circle" :to="{name:'admin.users.show', params:{user_id:user.id}}"><i class="fa fa-eye"></i></router-link>
-                            <router-link type="button" class="btn btn-warning btn-circle" :to="{name:'admin.users.edit', params:{user_id:user.id}}"><i class="fa fa-cut"></i></router-link>
-                            <button type="button" class="btn btn-danger btn-circle" @click.prevent="deleteUser(user)"><i class="fa fa-trash"></i></button>
+                            <router-link type="button" class="btn m-a-xs btn-xs btn-primary" :to="{name:'admin.users.show', params:{user_id:user.id}}"><i class="glyphicon glyphicon-eye"></i></router-link>
+                            <router-link type="button" class="btn m-a-xs btn-xs btn-warning" :to="{name:'admin.users.edit', params:{user_id:user.id}}"><i class="glyphicon glyphicon-edit"></i></router-link>
+                            <button type="button" class="btn m-a-xs btn-xs btn-danger" @click.prevent="deleteUser(user)"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                     <tr v-else>
@@ -37,13 +41,14 @@
                             <h3>No Users Exists</h3>
                         </td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            <!-- صفحه بندی پایین -->
+            <ul v-if="users != null" class="pagination">
+                <li v-for="page in users.last_page" :class="{active : users.current_page == page}"><router-link :to="{ name:'admin.users.index', query: { page } }">{{ page }}</router-link></li>
+            </ul>
         </div>
-        <!-- صفحه بندی پایین -->
-        <ul v-if="users != null" class="pagination">
-            <li v-for="page in users.last_page" :class="{active : users.current_page == page}"><router-link :to="{ name:'admin.users.index', query: { page } }">{{ page }}</router-link></li>
-        </ul>
     </card-component>
 </template>
 
@@ -69,12 +74,12 @@
                 var self = this;
                 this.users = null;
                 axios.get("/api/users?page="+(this.$route.query.page ? this.$route.query.page : 1))
-                .then(function(res){
-                    self.users = res.data;
-                })
-                .catch(function(error) {
-                    alert("OOPS... something went wrong!");
-                });
+                    .then(function(res){
+                        self.users = res.data;
+                    })
+                    .catch(function(error) {
+                        alert("OOPS... something went wrong!");
+                    });
             },
             // remove a user
             deleteUser(user) {
@@ -83,9 +88,9 @@
                     axios.delete("/api/users/"+user.id).then(function(res){
                         alert("The user deleted successfully!");
                     })
-                    .catch(function(error) {
-                        alert("OOPS... something went wrong!");
-                    }).then(function(){
+                        .catch(function(error) {
+                            alert("OOPS... something went wrong!");
+                        }).then(function(){
                         self.loadUsers();
                     });
                 }

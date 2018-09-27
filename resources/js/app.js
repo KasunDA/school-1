@@ -25,7 +25,9 @@ const router = new VueRouter({
  */
 
 Vue.component('card-component', require('./components/CardComponent.vue'));
-
+module.exports = {
+    mode: 'production'
+}
 const app = new Vue({
     el: '#app',
     router
